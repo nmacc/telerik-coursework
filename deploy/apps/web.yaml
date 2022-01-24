@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: tbspool
+  namespace: telerik-dev
+type: kubernetes.io/dockerconfigjson
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: omniawebclient
+  namespace: telerik-dev
+spec:
+  selector:
+    matchLabels:
+      app: omniawebclient
+  template:
+    metadata:
+      labels:
+        app: omniawebclient
+    spec:
+      containers:
+      - name: omniawebclient
+        image: tbspool.azurecr.io/omniawebclient:latest
+        env:
+        - name: BASE_URL
+          value: 
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
+      serviceAccountName: userroot
+      imagePullSecrets:
+        - name: pool
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: omniawebclient
+  namespace: telerik-dev
+spec:
+  selector:
+    app: omniawebclient
+  ports:
+  - port: 80
+    targetPort: 3000
+

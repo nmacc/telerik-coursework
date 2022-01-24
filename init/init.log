@@ -1,0 +1,28 @@
+sudo ./openshift-install --dir /home/admin/OCP/openshift/ wait-for bootstrap-complete --log-level=debug
+DEBUG OpenShift Installer 4.9.10
+DEBUG Built from commit e2850d67bbbf1a86101f665d39e1ca7f13965487
+INFO Waiting up to 20m0s for the Kubernetes API at https://api.ocp.lab.local:6443...
+DEBUG Still waiting for the Kubernetes API: Get "https://api.ocp.lab.local:6443/version?timeout=32s": dial tcp 192.168.77.209:6443: connect: no route to host
+DEBUG Still waiting for the Kubernetes API: Get "https://api.ocp.lab.local:6443/version?timeout=32s": dial tcp 192.168.77.209:6443: connect: connection refused
+DEBUG Still waiting for the Kubernetes API: Get "https://api.ocp.lab.local:6443/version?timeout=32s": dial tcp 192.168.77.209:6443: connect: connection refused
+DEBUG Still waiting for the Kubernetes API: an error on the server ("") has prevented the request from succeeding
+INFO API v1.22.3+ffbb954 up
+INFO Waiting up to 30m0s for bootstrapping to complete...
+DEBUG Bootstrap status: complete
+INFO It is now safe to remove the bootstrap resources
+DEBUG Time elapsed per stage:
+DEBUG Bootstrap Complete: 14m32s
+DEBUG                API: 3m40s
+INFO Time elapsed: 14m32s
+
+
+============================================================
+
+oc get nodes
+NAME          STATUS   ROLES           AGE     VERSION
+ocp-master1   Ready    master,worker   4h1m    v1.22.3+ffbb954
+ocp-master2   Ready    master,worker   3h59m   v1.22.3+ffbb954
+ocp-master3   Ready    master,worker   4h2m    v1.22.3+ffbb954
+ocp-worker1   Ready    worker          128m    v1.22.3+ffbb954
+ocp-worker2   Ready    worker          128m    v1.22.3+ffbb954
+ocp-worker3   Ready    worker          129m    v1.22.3+ffbb954
